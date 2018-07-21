@@ -8,5 +8,12 @@
         <parameter value="C:\Users\10713\Documents\ideaFile\MyRpc\target/.scala_dependencies" />
       </parameters>
     </profile>
+    <profile name="Maven 2" modules="MyRpcWithScalaAkkaDemo2">
+      <parameters>
+        <parameter value="-make:transitive" />
+        <parameter value="-dependencyfile" />
+        <parameter value="C:\Users\10713\IdeaProjects\MyRpcWithScalaAkkaDemo2\target/.scala_dependencies" />
+      </parameters>
+    </profile>
   </component>
 </project>

@@ -7,6 +7,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="MyRpc" />
+        <module name="MyRpcWithScalaAkkaDemo2" />
       </profile>
     </annotationProcessing>
   </component>

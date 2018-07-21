@@ -17,7 +17,7 @@ class Worker extends Actor {
     //在master启动时会打印下面的那个协议, 可以先用这个做一个标志, 连接哪个master
     //继承actor后会有一个context, 可以通过它来连接
     //需要有/user, Master要和master那边创建的名字保持一致
-    val master = context.actorSelection(s"akka.tcp://MasterSystem@127.0.0.1:8888/user/myMaster")
+    val master = context.actorSelection(s"akka.tcp://${Master.ACTORSYSTEM_NAME}@127.0.0.1:8888/user/${Master.ACTOR_NAME}")
     master ! "connect"
   }
 

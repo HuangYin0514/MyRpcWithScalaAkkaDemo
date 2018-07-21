@@ -30,6 +30,10 @@ class Master extends Actor {
 }
 
 object Master {
+
+  val ACTORSYSTEM_NAME = "MasterSystem"
+  val ACTOR_NAME = "myMaster"
+
   def main(args: Array[String]): Unit = {
     val host = args(0)
     val port = args(1).toInt
@@ -42,9 +46,9 @@ object Master {
        """.stripMargin
     val config = ConfigFactory.parseString(configStr)
     //ActorSystem老大，辅助创建和监控下面的Actor，他是单例的
-    val actorSystem = ActorSystem("MasterSystem", config)
+    val actorSystem = ActorSystem(ACTORSYSTEM_NAME, config)
     //创建Actor, 起个名字
-    val master = actorSystem.actorOf(Props[Master], "myMaster") //Master主构造器会执行
+    val master = actorSystem.actorOf(Props[Master], ACTOR_NAME) //Master主构造器会执行
     master ! "hello" //发送信息
     actorSystem.awaitTermination() //让进程等待着, 先别结束
   }
