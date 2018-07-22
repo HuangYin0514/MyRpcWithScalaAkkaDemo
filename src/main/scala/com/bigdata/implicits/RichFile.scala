@@ -22,7 +22,7 @@ object RichFile {
         println(context)
     */
     //隐式转换；隐式的进行增强
-    import MyPreDef._
+    import MyPreDef._ //MyPreDef 不能放到该伴生对象的下面，因为object是从上到下编译的，放到下面则执行到此处未编译
     val context = file.read()
     println(context)
   }
