@@ -21,6 +21,7 @@ object RichFile {
         val context = rf.read()
         println(context)
     */
+    //隐式转换；隐式的进行增强
     import MyPreDef._
     val context = file.read()
     println(context)
