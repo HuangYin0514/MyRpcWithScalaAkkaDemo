@@ -21,13 +21,15 @@ object TestKeLiHua {
 
 
   def main(args: Array[String]): Unit = {
-    import MyContext._
+
     println(m2(22))
+    import MyContext._
     println(m2(330))
   }
 }
 
+/*
 object MyContext {
   //这里起名为一个字母的时候会出现问题
   implicit val abc: Int = 666
-}
+}*/
