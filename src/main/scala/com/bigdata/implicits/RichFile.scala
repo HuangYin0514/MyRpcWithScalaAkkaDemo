@@ -24,7 +24,5 @@ object RichFile {
     import MyPreDef._
     val context = file.read()
     println(context)
-
-
   }
 }
