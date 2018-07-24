@@ -11,7 +11,21 @@ object MyPreDef {
   //调用隐式转换中的方法进行处理
   implicit def file2RichFile(file: File) = new RichFile(file)
 
-  implicit object girl2Ordering extends Ordering[Girl] {
+  /*
+    //隐式伴生对象
+    implicit object girl2Ordering extends Ordering[Girl] {
+      override def compare(x: Girl, y: Girl): Int = {
+        if (x.faceValue == y.faceValue) {
+          x.size - y.size
+        } else {
+          x.faceValue - y.faceValue
+        }
+      }
+    }
+    */
+
+  //方法一 类
+  trait girl2Ordering extends Ordering[Girl] {
     override def compare(x: Girl, y: Girl): Int = {
       if (x.faceValue == y.faceValue) {
         x.size - y.size
@@ -21,9 +35,25 @@ object MyPreDef {
     }
   }
 
-  implicit def girl2Ordered(x: Girl) = new Ordered[Girl] {
+  implicit object girl2OrderingObject extends girl2Ordering
 
-    override def compare(y: Girl): Int = {
+
+  //方法二 函数
+  // 在无参数的时候 退化成
+  // val  girl2Ordering :  Ordering[Girl] = ...
+  implicit val girl2Ordering = new Ordering[Girl] {
+    override def compare(x: Girl, y: Girl): Int = {
+      if (x.faceValue == y.faceValue) {
+        x.size - y.size
+      } else {
+        x.faceValue - y.faceValue
+      }
+    }
+  }
+
+  //方法三 方法
+  implicit def girl2Ordering2 = new Ordering[Girl] {
+    override def compare(x: Girl, y: Girl): Int = {
       if (x.faceValue == y.faceValue) {
         x.size - y.size
       } else {
@@ -33,4 +63,28 @@ object MyPreDef {
   }
 
 
+  //方法一 方法
+    implicit def girl2Ordered(x: Girl) = new Ordered[Girl] {
+      override def compare(y: Girl): Int = {
+        if (x.faceValue == y.faceValue) {
+          x.size - y.size
+        } else {
+          x.faceValue - y.faceValue
+        }
+      }
+    }
+
+  //方法二 函数
+  implicit val girl2Ordered = (x: Girl) => new Ordered[Girl] {
+    override def compare(y: Girl): Int = {
+      if (x.faceValue == y.faceValue) {
+        x.size - y.size
+      } else {
+        x.faceValue - y.faceValue
+      }
+    }
+  }
+
+  //方法三 object
+  // 由于object 不能接受参数 ,所以object在有参数的时候无法实现
 }
